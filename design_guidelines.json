@@ -1,0 +1,179 @@
+{
+  "identity": "E1 - The Anti-AI Designer",
+  "theme_strategy": {
+    "name": "Apple Fintech Minimalism",
+    "mode": "light-only",
+    "core_philosophy": "Reduction until only the essential remains. Soft light, diffuse shadows, readable typography."
+  },
+  "typography": {
+    "font_family_heading": "Inter, -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
+    "font_family_body": "Inter, -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif",
+    "scale": {
+      "h1": "text-3xl md:text-4xl font-semibold tracking-tight text-gray-900",
+      "h2": "text-2xl font-semibold tracking-tight text-gray-900",
+      "h3": "text-xl font-medium text-gray-900",
+      "body": "text-base text-gray-600 leading-relaxed",
+      "caption": "text-sm text-gray-500 font-medium",
+      "small": "text-xs text-gray-400 uppercase tracking-wider font-semibold"
+    }
+  },
+  "colors": {
+    "palette": {
+      "background": "#F7F8FA",
+      "surface": "#FFFFFF",
+      "surface_highlight": "#F9FAFB",
+      "primary": "#3B82F6",
+      "primary_hover": "#2563EB",
+      "primary_light": "#EFF6FF",
+      "text_main": "#111827",
+      "text_secondary": "#6B7280",
+      "text_tertiary": "#9CA3AF",
+      "border": "#E5E7EB",
+      "border_light": "#F3F4F6",
+      "success": "#10B981",
+      "success_bg": "#ECFDF5",
+      "warning": "#F59E0B",
+      "warning_bg": "#FFFBEB",
+      "error": "#EF4444",
+      "error_bg": "#FEF2F2"
+    },
+    "tailwind_config_extension": {
+      "colors": {
+        "apple-gray": "#F5F5F7",
+        "apple-blue": "#0071E3",
+        "dhan-blue": "#3B82F6",
+        "glass-border": "rgba(0,0,0,0.06)",
+        "glass-bg": "rgba(255,255,255,0.7)"
+      },
+      "boxShadow": {
+        "soft": "0 2px 8px -2px rgba(0, 0, 0, 0.05), 0 4px 16px -4px rgba(0, 0, 0, 0.02)",
+        "float": "0 8px 30px rgba(0, 0, 0, 0.04)",
+        "glass": "0 4px 30px rgba(0, 0, 0, 0.03)"
+      }
+    }
+  },
+  "layout": {
+    "structure": {
+      "sidebar_width": "280px",
+      "container_padding": "p-6 md:p-8 lg:p-12",
+      "grid_gap": "gap-6 md:gap-8"
+    },
+    "bento_grid": {
+      "wrapper": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(180px,auto)] gap-6",
+      "item_base": "bg-white rounded-[24px] border border-gray-100 shadow-soft p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-float hover:-translate-y-1 relative overflow-hidden group"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#3B82F6] hover:bg-[#2563EB] text-white rounded-full px-6 py-2.5 font-medium transition-all shadow-sm hover:shadow-md active:scale-95 text-sm",
+      "secondary": "bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 rounded-full px-6 py-2.5 font-medium transition-all text-sm",
+      "ghost": "text-gray-500 hover:text-[#3B82F6] hover:bg-blue-50/50 rounded-lg px-4 py-2 transition-all font-medium text-sm"
+    },
+    "cards": {
+      "standard": "bg-white rounded-[24px] border border-gray-100 shadow-soft p-6",
+      "glass": "bg-white/70 backdrop-blur-xl border border-white/40 shadow-glass rounded-[24px] p-6",
+      "interactive": "cursor-pointer hover:border-blue-200 transition-colors"
+    },
+    "inputs": {
+      "base": "flex h-12 w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B82F6]/20 focus-visible:border-[#3B82F6] disabled:cursor-not-allowed disabled:opacity-50 transition-all"
+    },
+    "badges": {
+      "base": "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+      "success": "bg-emerald-50 text-emerald-700 border border-emerald-100",
+      "warning": "bg-amber-50 text-amber-700 border border-amber-100",
+      "neutral": "bg-gray-100 text-gray-700 border border-gray-200"
+    }
+  },
+  "visual_enhancers": {
+    "glassmorphism": "backdrop-blur-md bg-white/80 border border-white/20",
+    "gradients": {
+      "subtle_fade": "bg-gradient-to-b from-white to-gray-50",
+      "blue_glow": "bg-gradient-to-tr from-blue-50 to-transparent"
+    },
+    "images": {
+      "abstract_white": "https://images.unsplash.com/photo-1655391927835-1c81b5ab727a?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "abstract_shapes": "https://images.unsplash.com/photo-1681837165504-55acdbca78c4?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "finance_pattern": "https://images.pexels.com/photos/12920749/pexels-photo-12920749.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    }
+  },
+  "motion": {
+    "page_transition": {
+      "initial": { "opacity": 0, "y": 20 },
+      "animate": { "opacity": 1, "y": 0 },
+      "exit": { "opacity": 0, "y": -20 },
+      "transition": { "duration": 0.4, "ease": [0.22, 1, 0.36, 1] }
+    },
+    "hover_card": "hover:-translate-y-1 transition-transform duration-300 ease-out",
+    "stagger_children": {
+      "hidden": { "opacity": 0 },
+      "show": {
+        "opacity": 1,
+        "transition": {
+          "staggerChildren": 0.1
+        }
+      }
+    }
+  },
+  "accessibility": {
+    "contrast_check": "Ensure text is #111827 or #374151 on light backgrounds.",
+    "focus_states": "All interactive elements must have visible focus rings (ring-2 ring-blue-500/20).",
+    "aria_labels": "Required for all icon-only buttons."
+  },
+  "page_specifics": {
+    "overview": {
+      "layout": "Bento Grid",
+      "key_elements": "Financial Health Score (Radial Chart), Portfolio Donut, AI Insight Card (Glass)"
+    },
+    "markets": {
+      "layout": "Split View (List + Detail)",
+      "key_elements": "Candlestick Charts (Recharts), Sector Heatmap (Grid of colored blocks)"
+    },
+    "learn": {
+      "layout": "Masonry or Grid",
+      "key_elements": "Lesson Cards with Progress Bars, Quiz Overlay"
+    },
+    "portfolio": {
+      "layout": "Dashboard",
+      "key_elements": "Tax Regime Toggle (Segmented Control), Asset Allocation Donut"
+    },
+    "risk": {
+      "layout": "Single Column + Sidebar",
+      "key_elements": "Fraud Scanner Input (Large Text Area), Risk Score Gauge"
+    },
+    "ai_advisor": {
+      "layout": "Chat Interface",
+      "key_elements": "Message Bubbles (Blue for User, Gray for AI), Quick Suggestion Chips"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Use 'lucide-react' for all icons. Stroke width 1.5px or 2px.",
+    "Implement 'Recharts' for all charts. Remove grid lines where possible for cleaner look.",
+    "Use 'framer-motion' for layout transitions.",
+    "For the 'Overview' page, use a Bento Grid layout with cards spanning different column sizes.",
+    "Ensure the 'Financial Health Score' is the visual anchor (hero element) of the Overview.",
+    "Use the provided image URLs for background textures or abstract card headers only. Do not clutter the UI.",
+    "Strictly follow the color palette. No dark mode toggles.",
+    "Authentication pages should be clean, centered cards with a subtle blue gradient background."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. In frontend design, this creates what users call the 'AI slop' aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy",
+    "Use glass-morphism effects with backdrop filters (12-24px blur)",
+    "You MUST NOT apply universal transition. Eg: 'transition: all'. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms",
+    "You MUST NOT center align the app container, ie do not add '.App { text-align: center; }' in the css file. This disrupts the human natural reading flow of text",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠💭💡 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "Main agent relies on these image URLs. Missing categories (especially sponsor logos) = main agent will use placeholder text which is FORBIDDEN",
+    "Prioritize using pre-existing components from src/components/ui when applicable",
+    "Create new components that match the style and conventions of existing components when needed",
+    "Examine existing components to understand the project's component patterns before creating new ones",
+    "Components MUST use named exports (export const ComponentName = ...)",
+    "Pages MUST use default exports (export default function PageName() {...})",
+    "Use 'sonner' for toasts. Sonner component are located in '/app/src/components/ui/sonner.tsx'"
+  ]
+}
