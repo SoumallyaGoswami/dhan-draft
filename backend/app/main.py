@@ -69,6 +69,10 @@ async def websocket_chat(websocket: WebSocket):
 async def startup_event():
     """Initialize database and seed demo data."""
     logger.info("🚀 Starting DHAN-DRAFT API v2.0.0 (Refactored)")
+    if settings.ALPHA_VANTAGE_API_KEY:
+        logger.info("Alpha Vantage: enabled (real-time US stock data)")
+    else:
+        logger.info("Alpha Vantage: disabled (using DB seed data)")
     await connect_db()
     await seed_demo_data()
     logger.info("✅ Application started successfully")

@@ -32,7 +32,11 @@ export default function MarketsPage() {
       setNews(n.data.data || []);
       setHeatmap(h.data.data || []);
       if (st.length > 0) selectStock(st[0].symbol);
-    }).catch(() => {}).finally(() => setLoading(false));
+    }).catch((err) => {
+      const d = err.response?.data?.detail;
+      const msg = Array.isArray(d) ? d[0]?.msg || d[0] : (d || err.message);
+      toast.error(typeof msg === 'string' ? msg : 'Failed to load markets');
+    }).finally(() => setLoading(false));
   }, []);
 
   const selectStock = async (symbol) => {
@@ -58,7 +62,8 @@ export default function MarketsPage() {
   if (loading) return <div className="flex items-center justify-center h-64"><div className="w-8 h-8 border-2 border-dhan-blue border-t-transparent rounded-full animate-spin" /></div>;
 
   const hist = stockDetail?.historicalData || [];
-  const chartData = hist.slice(-30);
+  const chartData = (Array.isArray(hist) ? hist : []).slice(-30);
+  const hasChartData = chartData.length >= 2;
   const ai = stockDetail?.aiPrediction || {};
 
   return (
@@ -92,7 +97,7 @@ export default function MarketsPage() {
                     <p className="text-xs text-gray-400 truncate max-w-[140px]">{s.name}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-semibold text-gray-900">Rs.{s.currentPrice?.toLocaleString('en-IN')}</p>
+                    <p className="text-sm font-semibold text-gray-900">{(s.currency === 'USD' ? '$' : 'Rs.')}{s.currentPrice?.toLocaleString('en-IN')}</p>
                     <p className={`text-xs font-medium flex items-center justify-end gap-0.5 ${s.change >= 0 ? 'text-emerald-600' : 'text-red-500'}`}>
                       {s.change >= 0 ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
                       {Math.abs(s.change)}%
@@ -113,25 +118,29 @@ export default function MarketsPage() {
                         <p className="text-sm text-gray-500">{stockDetail.sector} &middot; {stockDetail.marketCap}</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-2xl font-bold text-gray-900">Rs.{stockDetail.currentPrice?.toLocaleString('en-IN')}</p>
+                        <p className="text-2xl font-bold text-gray-900">{(stockDetail.currency === 'USD' ? '$' : 'Rs.')}{stockDetail.currentPrice?.toLocaleString('en-IN')}</p>
                         <p className={`text-sm font-medium ${stockDetail.change >= 0 ? 'text-emerald-600' : 'text-red-500'}`}>
                           {stockDetail.change >= 0 ? '+' : ''}{stockDetail.change}%
                         </p>
                       </div>
                     </div>
                     <ResponsiveContainer width="100%" height={250}>
-                      <AreaChart data={chartData}>
-                        <defs>
-                          <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.15} />
-                            <stop offset="95%" stopColor="#3B82F6" stopOpacity={0} />
-                          </linearGradient>
-                        </defs>
-                        <XAxis dataKey="date" tick={{ fontSize: 11, fill: '#9CA3AF' }} tickFormatter={v => v.slice(5)} axisLine={false} tickLine={false} />
-                        <YAxis domain={['auto', 'auto']} tick={{ fontSize: 11, fill: '#9CA3AF' }} axisLine={false} tickLine={false} width={60} tickFormatter={v => `${(v/1000).toFixed(1)}k`} />
-                        <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #E5E7EB', fontSize: 12 }} formatter={(v) => [`Rs.${v}`, 'Close']} />
-                        <Area type="monotone" dataKey="close" stroke="#3B82F6" strokeWidth={2} fillOpacity={1} fill="url(#colorPrice)" />
-                      </AreaChart>
+                      {hasChartData ? (
+                        <AreaChart data={chartData}>
+                          <defs>
+                            <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.15} />
+                              <stop offset="95%" stopColor="#3B82F6" stopOpacity={0} />
+                            </linearGradient>
+                          </defs>
+                          <XAxis dataKey="date" tick={{ fontSize: 11, fill: '#9CA3AF' }} tickFormatter={v => (v || '').toString().slice(5)} axisLine={false} tickLine={false} />
+                          <YAxis domain={['auto', 'auto']} tick={{ fontSize: 11, fill: '#9CA3AF' }} axisLine={false} tickLine={false} width={60} tickFormatter={v => v >= 1000 ? `${(v/1000).toFixed(1)}k` : v} />
+                          <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #E5E7EB', fontSize: 12 }} formatter={(v) => [`${stockDetail.currency === 'USD' ? '$' : 'Rs.'}${v}`, 'Close']} />
+                          <Area type="monotone" dataKey="close" stroke="#3B82F6" strokeWidth={2} fillOpacity={1} fill="url(#colorPrice)" />
+                        </AreaChart>
+                      ) : (
+                        <div className="flex items-center justify-center h-full text-gray-400 text-sm">Loading chart data...</div>
+                      )}
                     </ResponsiveContainer>
                   </div>
 

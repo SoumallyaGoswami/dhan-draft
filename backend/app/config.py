@@ -29,6 +29,9 @@ class Settings:
     # CORS
     CORS_ORIGINS: str = os.environ.get('CORS_ORIGINS', '*')
     
+    # Alpha Vantage (optional - leave empty to use DB seed data)
+    ALPHA_VANTAGE_API_KEY: str = (os.environ.get('ALPHA_VANTAGE_API_KEY') or '').strip()
+    
     def __init__(self):
         """Initialize and validate settings."""
         # Warn about default JWT secret
